@@ -1,0 +1,15 @@
+{% load draw_menu %}
+
+{% if success %}
+    <li><a href="{% url 'index' pk=parent.pk %}"><strong>{{ parent }}</strong></a></li>
+    <ul>
+        {% for child in children %}
+
+            {% if child == item %}
+                {% draw_menu item %}
+            {% else %}
+                <li><a href="{% url 'index' pk=child.pk %}">{{ child }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}

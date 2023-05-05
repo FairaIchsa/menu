@@ -1,3 +1,5 @@
+{% load draw_menu %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,6 @@
     <title>{% block title %}Menu{% endblock %}</title>
 </head>
 <body>
-    Oh, hi Mark!
+    {% draw_menu 'Main' %}
 </body>
 </html>
