@@ -1,15 +1,13 @@
-{% load draw_menu %}
-
-{% if success %}
-    <li><a href="{% url 'index' pk=parent.pk %}"><strong>{{ parent }}</strong></a></li>
-    <ul>
-        {% for child in children %}
-
-            {% if child == item %}
-                {% draw_menu item %}
-            {% else %}
-                <li><a href="{% url 'index' pk=child.pk %}">{{ child }}</a></li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-{% endif %}
+<div class="menu">
+    {% for item in tree %}
+        {% if item.is_open or item.is_root or item.is_active %}
+        <a href="{% url 'index' pk=item.id %}"
+           class="item
+                {% if item.is_root %}first-level{% endif %}
+                {% if item.is_open %}open{% endif %}
+                {% if item.is_active %}active{% endif %}
+                {% if item.active_child %} active_child {% endif %}
+            ">{{ item.title }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
