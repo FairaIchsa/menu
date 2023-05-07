@@ -1,0 +1,15 @@
+{% load draw_children %}
+
+<li>
+    <strong><a href="{% url 'index' pk=parent.id %}">{{ parent.title }}</a></strong>
+    <ul>
+        {% for child in parent.children %}
+            {% if child.is_active %}
+                {% draw_children child %}
+            {% else %}
+                <li><a href="{% url 'index' pk=child.id %}">{{ child.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</li>
+
